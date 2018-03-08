@@ -1,0 +1,10 @@
+language: r
+language: R
+r: 
+- devel
+- release
+latex: false
+pandoc: false
+
+script: 
+- system.time({for (i in 1:1e9) break})
