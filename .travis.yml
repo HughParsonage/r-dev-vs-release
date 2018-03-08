@@ -1,5 +1,6 @@
 language: r
 language: R
+cache: packages
 r: 
 - devel
 - release
@@ -12,4 +13,4 @@ install:
 script: 
 - Rscript -e 'download.file("https://raw.githubusercontent.com/HughParsonage/Census2016.DataPack.SA1/master/tsv/SA1__Age.min.tsv", destfile = "SA1-age.tsv")'
 - Rscript -e 'system.time({for (i in 1:1e9) break})'
-- Rscript -e 'microbenchmark::microbenchmark(read.delim("SA1-age.tsv"), data.table::fread("SA1-age.tsv"), readr::read_tsv("SA1-age.tsv")'
+- Rscript -e 'microbenchmark::microbenchmark(read.delim("SA1-age.tsv"), data.table::fread("SA1-age.tsv"), readr::read_tsv("SA1-age.tsv"))'
