@@ -6,5 +6,11 @@ r:
 latex: false
 pandoc: false
 
+install:
+- Rscript -e 'install.packages(c("microbenchmark", "data.table"))'
+
 script: 
-- system.time({for (i in 1:1e9) break})
+- Rscript -e 'download.file("https://raw.githubusercontent.com/HughParsonage/Census2016.DataPack.SA1/master/tsv/SA1__Age.min.tsv", destfile = "SA1-age.tsv")
+- Rscript -e 'system.time({for (i in 1:1e9) break})'
+- Rscript -e 'system.time(read.delim("SA1-age.tsv"))'
+- Rscript -e 'system.time(data.table::fread("SA1-age.tsv"))'
