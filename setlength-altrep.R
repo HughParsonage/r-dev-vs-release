@@ -37,7 +37,7 @@ parse_tex0 <- function(tex_lines) {
   setindexv(out, "tex_group")
   for (j in seq_len(5)) {
     tgj <- tg[j]
-    out[tex_group <= j, (tgj) := cumsum(openers & tex_group == j)]
+    out[, (tgj) := 1L]
     GROUP_IDj <- GROUP_IDz[j]
     out[tex_group == j, (GROUP_IDj) := .GRP, by = c("optional_tex_group", tgj)]
   }
