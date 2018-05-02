@@ -25,6 +25,7 @@ parse_tex0 <- function(tex_lines) {
                     tex_group = tex_group,
                     optional_tex_group = optional_tex_group)
 
+  out <- out[, .(tex_group)]
   seq_max_tex_group <- seq_len(5)
 
   tg <- sprintf("tg%s", seq_max_tex_group)
