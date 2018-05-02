@@ -6,7 +6,8 @@ parse_tex0 <- function(tex_lines) {
 
   tg <- sprintf("tg%s", seq_max_tex_group)
   GROUP_IDz <- sprintf("GROUP_ID%s", seq_max_tex_group)
-
+  out[tex_group == 0L]
+  out[, z := .GRP, by = "tex_group"]
   setindexv(out, "tex_group")
   for (j in seq_len(5)) {
     tgj <- tg[j]
