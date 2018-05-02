@@ -4,10 +4,13 @@ parse_tex0 <- function(tex_lines) {
   out <- data.table(tex_group = c(0L, 1L, 1L))
   seq_max_tex_group <- seq_len(5)
 
+
+  out[, z1 := .GRP, by = "tex_group"]
+  out[tex_group == 0L]
+  out[, z2 := .GRP, by = "tex_group"]
+
   tg <- sprintf("tg%s", seq_max_tex_group)
   GROUP_IDz <- sprintf("GROUP_ID%s", seq_max_tex_group)
-  out[tex_group == 0L]
-  out[, z := .GRP, by = "tex_group"]
   setindexv(out, "tex_group")
   for (j in seq_len(5)) {
     tgj <- tg[j]
