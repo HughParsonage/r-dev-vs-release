@@ -1,3 +1,4 @@
+library(data.table)
 
 parse_tex0 <- function(tex_lines) {
   nchar_tex_lines <- nchar(tex_lines)
