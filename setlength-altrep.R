@@ -43,6 +43,6 @@ parse_tex0 <- function(tex_lines) {
   }
   out
 }
-
+parse_tex0(c("A{}"))
 parse_tex0(c("A{}", "B[a]{b{c}{d}}z"))
 
