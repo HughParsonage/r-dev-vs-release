@@ -39,7 +39,7 @@ parse_tex0 <- function(tex_lines) {
     tgj <- tg[j]
     out[, (tgj) := 1L]
     GROUP_IDj <- GROUP_IDz[j]
-    out[tex_group == j, (GROUP_IDj) := .GRP, by = c("optional_tex_group", tgj)]
+    out[tex_group == j, (GROUP_IDj) := .GRP, by = c(tgj)]
   }
   out
 }
