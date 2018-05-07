@@ -46,3 +46,16 @@ parse_tex0 <- function(tex_lines) {
 parse_tex0(c("A{}"))
 parse_tex0(c("A{}", "B[a]{b{c}{d}}z"))
 
+update.dev.pkg()
+library(data.table)
+
+DT <- data.table(x = 1:10,
+                 y = 1:2)
+
+DT[, v := cumsum(x), by = "y"]
+
+
+
+
+
+
