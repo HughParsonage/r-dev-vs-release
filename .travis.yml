@@ -1,6 +1,4 @@
 language: r
-language: R
-cache: packages
 r:
 - devel
 - release
@@ -9,9 +7,11 @@ pandoc: false
 
 install:
 - Rscript -e 'if (!requireNamespace("data.table", quietly = TRUE)) install.packages(c("microbenchmark", "data.table"))'
+- Rscript -e 'update.packages(ask=F)'
 
 script:
 - Rscript setlength-altrep.R
+- Rscript datatable1158.R
 #- Rscript -e 'download.file("https://raw.githubusercontent.com/HughParsonage/Census2016.DataPack.SA1/master/tsv/SA1__Age.min.tsv", destfile = "SA1-age.tsv")'
 #- Rscript -e 'system.time({for (i in 1:1e9) break})'
 #- Rscript -e 'microbenchmark::microbenchmark(read.delim("SA1-age.tsv"), data.table::fread("SA1-age.tsv"), readr::read_tsv("SA1-age.tsv"), times = 2)'
