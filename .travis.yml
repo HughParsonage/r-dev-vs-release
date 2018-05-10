@@ -1,7 +1,8 @@
 language: r
 r:
-- devel
+- oldrel
 - release
+- devel
 latex: false
 pandoc: false
 
@@ -10,6 +11,7 @@ install:
 - Rscript -e 'update.packages(ask=F)'
 
 script:
+- Rscript -e 'grey(level = 1, alpha = c(0, 0.5, 1))'
 - Rscript setlength-altrep.R
 - Rscript datatable1158.R
 #- Rscript -e 'download.file("https://raw.githubusercontent.com/HughParsonage/Census2016.DataPack.SA1/master/tsv/SA1__Age.min.tsv", destfile = "SA1-age.tsv")'
