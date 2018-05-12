@@ -1,8 +1,8 @@
 # NOTE: no fff function
 if (requireNamespace("pryr", quietly = TRUE)) {
-  update.packages(ask = FALSE)
+  update.packages(ask = FALSE, quiet = TRUE)
 } else {
-  install.packages("pryr")
+  install.packages("pryr", quiet = TRUE)
 }
 require(data.table)
 n <- 2e6
