@@ -1,4 +1,7 @@
 language: r
+os:
+  - linux
+  - osx
 r:
 - oldrel
 - release
@@ -11,9 +14,8 @@ install:
 - Rscript -e 'update.packages(ask=F)'
 
 script:
-- Rscript -e 'grey(level = 1, alpha = c(0, 0.5, 1))'
 - Rscript setlength-altrep.R
-- Rscript datatable1158.R
+- Rscript datatable2866.R
 #- Rscript -e 'download.file("https://raw.githubusercontent.com/HughParsonage/Census2016.DataPack.SA1/master/tsv/SA1__Age.min.tsv", destfile = "SA1-age.tsv")'
 #- Rscript -e 'system.time({for (i in 1:1e9) break})'
 #- Rscript -e 'microbenchmark::microbenchmark(read.delim("SA1-age.tsv"), data.table::fread("SA1-age.tsv"), readr::read_tsv("SA1-age.tsv"), times = 2)'
