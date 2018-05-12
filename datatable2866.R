@@ -1,4 +1,9 @@
 # NOTE: no fff function
+if (requireNamespace("pryr", quietly = TRUE)) {
+  update.packages(ask = FALSE)
+} else {
+  install.packages("pryr")
+}
 require(data.table)
 n <- 2e6
 df <- data.frame(a=rnorm(n),
