@@ -13,7 +13,7 @@ cache: false
 install:
 - Rscript -e 'if (!requireNamespace("data.table", quietly = TRUE)) install.packages(c("microbenchmark", "data.table"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("grattan", quietly = TRUE)) install.packages("grattan")'
-- Rscript -e 'if (!requireNamespace("taxstats", quietly = TRUE)) devtools::install_github("hughparsonage/taxstats")'
+- Rscript -e 'if (!requireNamespace("taxstats", quietly = TRUE)) install.packages("taxstats", repos = "https://hughparsonage.github.io/drat", type = "source")'
 - Rscript -e 'update.packages(ask=F)'
 
 
