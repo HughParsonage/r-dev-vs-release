@@ -11,6 +11,12 @@ pandoc: false
 cache: false
 
 install:
+- Rscript -e 'if (!requireNamespace("stringi", quietly = TRUE)) install.packages(c("stringi"), quiet=T)'
+- Rscript -e 'if (!requireNamespace("glue", quietly = TRUE)) install.packages(c("glue"), quiet=T)'
+- Rscript -e 'if (!requireNamespace("magrittr", quietly = TRUE)) install.packages(c("magrittr"), quiet=T)'
+- Rscript -e 'if (!requireNamespace("stringr", quietly = TRUE)) install.packages(c("stringr"), quiet=T)'
+- Rscript -e 'if (!requireNamespace("evaluate", quietly = TRUE)) install.packages(c("evaluate"), quiet=T)'
+- Rscript -e 'if (!requireNamespace("knitr", quietly = TRUE)) install.packages(c("knitr"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("data.table", quietly = TRUE)) install.packages(c("microbenchmark", "data.table"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("grattan", quietly = TRUE)) install.packages("grattan", quiet = TRUE)'
 - Rscript -e 'if (!requireNamespace("taxstats", quietly = TRUE)) install.packages("taxstats", repos = "https://hughparsonage.github.io/drat", type = "source")'
