@@ -19,6 +19,7 @@ install:
 - Rscript -e 'if (!requireNamespace("knitr", quietly = TRUE)) install.packages(c("knitr"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("data.table", quietly = TRUE)) install.packages(c("microbenchmark", "data.table"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("grattan", quietly = TRUE)) install.packages("grattan", quiet = TRUE)'
+- Rscript -e 'if (!requireNamespace("bomrang", quietly = TRUE)) install.packages("bomrang", quiet = TRUE)'
 - Rscript -e 'if (!requireNamespace("taxstats", quietly = TRUE)) install.packages("taxstats", repos = "https://hughparsonage.github.io/drat", type = "source")'
 - Rscript -e 'update.packages(ask=F)'
 
@@ -30,6 +31,7 @@ script:
 - Rscript -e 'data.table::update.dev.pkg()'
 - Rscript setlength-altrep.R
 - Rscript datatable2866.R
+- Rscript -e 'get_precis_forecast(state = "QLD")'
 #- Rscript -e 'download.file("https://raw.githubusercontent.com/HughParsonage/Census2016.DataPack.SA1/master/tsv/SA1__Age.min.tsv", destfile = "SA1-age.tsv")'
 #- Rscript -e 'system.time({for (i in 1:1e9) break})'
 #- Rscript -e 'microbenchmark::microbenchmark(read.delim("SA1-age.tsv"), data.table::fread("SA1-age.tsv"), readr::read_tsv("SA1-age.tsv"), times = 2)'
