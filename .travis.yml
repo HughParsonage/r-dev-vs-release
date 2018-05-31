@@ -8,7 +8,7 @@ r:
 - devel
 latex: false
 pandoc: false
-cache: false
+cache: packages
 
 install:
 - Rscript -e 'if (!requireNamespace("stringi", quietly = TRUE)) install.packages(c("stringi"), quiet=T)'
@@ -18,17 +18,19 @@ install:
 - Rscript -e 'if (!requireNamespace("evaluate", quietly = TRUE)) install.packages(c("evaluate"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("knitr", quietly = TRUE)) install.packages(c("knitr"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("data.table", quietly = TRUE)) install.packages(c("microbenchmark", "data.table"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("grattan", quietly = TRUE)) install.packages("grattan", quiet = TRUE)'
-- Rscript -e 'if (!requireNamespace("bomrang", quietly = TRUE)) install.packages("bomrang", quiet = TRUE)'
+- Rscript -e 'if (!requireNamespace("dplyr", quietly = TRUE)) install.packages(c("dplyr"), quiet=T)'
+- Rscript -e 'if (!requireNamespace("readr", quietly = TRUE)) install.packages(c("readr"), quiet=T)'
+#- Rscript -e 'if (!requireNamespace("grattan", quietly = TRUE)) install.packages("grattan", quiet = TRUE)'
+- Rscript -e 'if (!requireNamespace("bomrang", quietly = TRUE)) install.packages("bomrang", quiet = FALSE)'
 - Rscript -e 'if (!requireNamespace("taxstats", quietly = TRUE)) install.packages("taxstats", repos = "https://hughparsonage.github.io/drat", type = "source")'
 - Rscript -e 'update.packages(ask=F)'
 
 
 script:
-- Rscript -e 'library(taxstats);library(data.table);library(grattan);library(hutils);print(system.time(get_sample_files_all()[, tax := income_tax(Taxable_Income, fy.year = .BY[[1L]], .dots.ATO = .SD), keyby = "fy.year"][, avg_tax_rate := coalesce(tax / Taxable_Income, 0)]))'
+#- Rscript -e 'library(taxstats);library(data.table);library(grattan);library(hutils);print(system.time(get_sample_files_all()[, tax := income_tax(Taxable_Income, fy.year = .BY[[1L]], .dots.ATO = .SD), keyby = "fy.year"][, avg_tax_rate := coalesce(tax / Taxable_Income, 0)]))'
 - Rscript setlength-altrep.R
 - Rscript datatable2866.R
-- Rscript -e 'data.table::update.dev.pkg()'
+#- Rscript -e 'data.table::update.dev.pkg()'
 - Rscript setlength-altrep.R
 - Rscript datatable2866.R
 - Rscript -e 'bomrang::get_precis_forecast(state = "QLD")'
