@@ -19,9 +19,10 @@ install:
 - Rscript -e 'if (!requireNamespace("knitr", quietly = TRUE)) install.packages(c("knitr"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("data.table", quietly = TRUE)) install.packages(c("microbenchmark", "data.table"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("dplyr", quietly = TRUE)) install.packages(c("dplyr"), quiet=T)'
+- Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages(c("devtools"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("readr", quietly = TRUE)) install.packages(c("readr"), quiet=T)'
 #- Rscript -e 'if (!requireNamespace("grattan", quietly = TRUE)) install.packages("grattan", quiet = TRUE)'
-- Rscript -e 'if (!requireNamespace("bomrang", quietly = TRUE)) install.packages("bomrang", quiet = FALSE)'
+- Rscript -e 'if (!requireNamespace("bomrang", quietly = TRUE)) devtools::install_github("hughparsonage/bomrang")'
 - Rscript -e 'if (!requireNamespace("taxstats", quietly = TRUE)) install.packages("taxstats", repos = "https://hughparsonage.github.io/drat", type = "source")'
 - Rscript -e 'update.packages(ask=F)'
 
