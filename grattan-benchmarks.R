@@ -11,7 +11,7 @@ library(grattan)
   detach("package:grattan", unload = TRUE)
   tmp <- tempfile()
   dir.create(tmp)
-  devtools::install_github('hughparsonage/grattan', force = TRUE, args = paste0('--library="', normalizePath(tmp, winslash = "/"), '"'))
+  devtools::install_github('hughparsonage/grattan', force = TRUE, quiet = TRUE, args = paste0('--library="', normalizePath(tmp, winslash = "/"), '"'))
   library("grattan", lib.loc = tmp)
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
                                                 to_fy = "2015-16",
