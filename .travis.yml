@@ -28,7 +28,7 @@ install:
 # - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages(c("devtools"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("readr", quietly = TRUE)) install.packages(c("readr"), quiet=T)'
 - Rscript -e 'if (!requireNamespace("hutils", quietly = TRUE)) install.packages(c("hutils"), quiet=T)'
-# - Rscript -e 'if (!requireNamespace("grattan", quietly = TRUE)) install.packages("grattan", quiet = TRUE)'
+- Rscript -e 'if (!requireNamespace("grattan", quietly = TRUE)) install.packages("grattan", quiet = TRUE)'
 - Rscript -e 'if (!requireNamespace("taxstats", quietly = TRUE)) install.packages("taxstats", repos = "https://hughparsonage.github.io/drat", type = "source")'
 - Rscript -e 'if (!requireNamespace("bench", quietly = TRUE)) install.packages("bench")'
 - Rscript -e 'update.packages(ask=F)'
