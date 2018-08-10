@@ -13,6 +13,11 @@ library(grattan)
   dir.create(tmp)
   devtools::install_github('hughparsonage/grattan', force = TRUE, quiet = TRUE, args = paste0('--library="', normalizePath(tmp, winslash = "/"), '"'))
   library("grattan", lib.loc = tmp)
+  cat("from_fys 10M:\n")
+  print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
+                                                to_fy = "2015-16",
+                                                adjustment = "none")))
+  cat("from_fys 10M (hot):\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
                                                 to_fy = "2015-16",
                                                 adjustment = "none")))
