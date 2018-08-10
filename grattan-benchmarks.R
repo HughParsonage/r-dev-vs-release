@@ -1,9 +1,12 @@
 
 if (requireNamespace("grattan", quietly = TRUE) &&
 	  requireNamespace("bench", quietly = TRUE) &&
+	  requireNamespace("data.table", quietly = TRUE) &&
     requireNamespace("taxstats", quietly = TRUE)) {
 library(grattan)
-  
+  library(taxstats)
+  library(data.table)
+
   cat("sample_file_1314:\n")
   print(bench::system_time(sample_file_1314[, income_tax(Taxable_Income, "2013-14", .dots.ATO = .SD)]))
   cat("sample_file_1314 (hot):\n")
