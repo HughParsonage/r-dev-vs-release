@@ -29,6 +29,10 @@ DT <- data.table(x = 1:10,
 DT[, v := cumsum(x), by = "y"]
 
 
+dt0 <- as.data.table(list(V1 = NULL))
+dt0[V1 > 0]
+
+
 
 
 
