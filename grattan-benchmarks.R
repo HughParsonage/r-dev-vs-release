@@ -21,8 +21,7 @@ library(grattan)
                                                 adjustment = "none")))
   cat("wage\n")
   print(bench::system_time(wage_inflator(from_fy = from_fys100M,
-                                                to_fy = "2015-16",
-                                                adjustment = "none")))
+                                                to_fy = "2015-16")))
   detach("package:grattan", unload = TRUE)
   tmp <- tempfile()
   dir.create(tmp)
@@ -36,6 +35,9 @@ library(grattan)
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
                                                 to_fy = "2015-16",
                                                 adjustment = "none")))
+  cat("wage\n")
+  print(bench::system_time(wage_inflator(from_fy = from_fys100M,
+                                                to_fy = "2015-16")))
 
 
 
