@@ -30,7 +30,7 @@ DT[, v := cumsum(x), by = "y"]
 
 
 dt0 <- as.data.table(list(V1 = NULL))
-dt0[V1 > 0]
+# dt0[V1 > 0]
 
 
 

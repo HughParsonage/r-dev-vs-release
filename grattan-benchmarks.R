@@ -15,7 +15,12 @@ library(grattan)
   set.seed(19842014)
   from_fys10K <- sample(yr2fy(1984:2014), size = 10e3, replace = TRUE)
   from_fys100M <- rep(from_fys10K, times = 10e6/10e3)
+  cat("cpi\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
+                                                to_fy = "2015-16",
+                                                adjustment = "none")))
+  cat("wage\n")
+  print(bench::system_time(wage_inflator(from_fy = from_fys100M,
                                                 to_fy = "2015-16",
                                                 adjustment = "none")))
   detach("package:grattan", unload = TRUE)
@@ -23,7 +28,7 @@ library(grattan)
   dir.create(tmp)
   devtools::install_github('hughparsonage/grattan', force = TRUE, quiet = TRUE, args = paste0('--library="', normalizePath(tmp, winslash = "/"), '"'))
   library("grattan", lib.loc = tmp)
-  cat("from_fys 10M:\n")
+  cat("cpi\nfrom_fys 10M:\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
                                                 to_fy = "2015-16",
                                                 adjustment = "none")))
@@ -33,7 +38,10 @@ library(grattan)
                                                 adjustment = "none")))
 
 
+
+
   rm(from_fys100M)
+
 
   print(bench::mark(min(1:1e8)))
 
