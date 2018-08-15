@@ -19,7 +19,13 @@ library(grattan)
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
                                                 to_fy = "2015-16",
                                                 adjustment = "none")))
-  cat("wage\n")
+  cat("wage (single)\n")
+  print(bench::system_time(wage_inflator(from_fy = "2011-12",
+                                                to_fy = "2015-16")))
+  cat("wage (10K)\n")
+  print(bench::system_time(wage_inflator(from_fy = from_fys10K,
+                                                to_fy = "2015-16")))
+  cat("wage (10M)\n")
   print(bench::system_time(wage_inflator(from_fy = from_fys100M,
                                                 to_fy = "2015-16")))
   detach("package:grattan", unload = TRUE)
@@ -35,7 +41,13 @@ library(grattan)
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
                                                 to_fy = "2015-16",
                                                 adjustment = "none")))
-  cat("wage\n")
+  cat("wage (single)\n")
+  print(bench::system_time(wage_inflator(from_fy = "2011-12",
+                                                to_fy = "2015-16")))
+  cat("wage (10K)\n")
+  print(bench::system_time(wage_inflator(from_fy = from_fys10K,
+                                                to_fy = "2015-16")))
+  cat("wage (10M)\n")
   print(bench::system_time(wage_inflator(from_fy = from_fys100M,
                                                 to_fy = "2015-16")))
 
