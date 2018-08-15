@@ -14,7 +14,9 @@ library(grattan)
 
   set.seed(19842014)
   from_fys10K <- sample(yr2fy(1984:2014), size = 10e3, replace = TRUE)
+  wage_from_fys10K <- rep_len(from_fys[from_fys >= "1999-00"], 10e3)
   from_fys100M <- rep(from_fys10K, times = 10e6/10e3)
+  wage_from_fys100 <- rep(wage_from_fys10K, times = 10e6/10e3)
   cat("cpi\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
                                                 to_fy = "2015-16",
@@ -23,10 +25,10 @@ library(grattan)
   print(bench::system_time(wage_inflator(from_fy = "2011-12",
                                                 to_fy = "2015-16")))
   cat("wage (10K)\n")
-  print(bench::system_time(wage_inflator(from_fy = from_fys10K,
+  print(bench::system_time(wage_inflator(from_fy = wage_from_fys10K,
                                                 to_fy = "2015-16")))
   cat("wage (10M)\n")
-  print(bench::system_time(wage_inflator(from_fy = from_fys100M,
+  print(bench::system_time(wage_inflator(from_fy = wage_from_fys100,
                                                 to_fy = "2015-16")))
   detach("package:grattan", unload = TRUE)
   tmp <- tempfile()
@@ -45,10 +47,10 @@ library(grattan)
   print(bench::system_time(wage_inflator(from_fy = "2011-12",
                                                 to_fy = "2015-16")))
   cat("wage (10K)\n")
-  print(bench::system_time(wage_inflator(from_fy = from_fys10K,
+  print(bench::system_time(wage_inflator(from_fy = wage_from_fys10K,
                                                 to_fy = "2015-16")))
   cat("wage (10M)\n")
-  print(bench::system_time(wage_inflator(from_fy = from_fys100M,
+  print(bench::system_time(wage_inflator(from_fy = wage_from_fys100,
                                                 to_fy = "2015-16")))
 
 
