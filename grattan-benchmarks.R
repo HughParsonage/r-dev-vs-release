@@ -14,7 +14,7 @@ library(grattan)
 
   set.seed(19842014)
   from_fys10K <- sample(yr2fy(1984:2014), size = 10e3, replace = TRUE)
-  wage_from_fys10K <- rep_len(from_fys[from_fys >= "1999-00"], 10e3)
+  wage_from_fys10K <- rep_len(from_fys10K[from_fys10K >= "1999-00"], 10e3)
   from_fys100M <- rep(from_fys10K, times = 10e6/10e3)
   wage_from_fys100 <- rep(wage_from_fys10K, times = 10e6/10e3)
   cat("cpi\n")
