@@ -35,6 +35,9 @@ library(grattan)
 
   rm(from_fys100M)
 
+  print(bench::mark(min(1:1e8)))
+
+
 } else {
 	cat("\nUnable to record benchmark.\n")
 }
