@@ -8,12 +8,15 @@ if (requireNamespace("grattan", quietly = TRUE) &&
   library(taxstats)
   library(data.table)
   library(utils)
-  if (getRversion() >= "3.5.0") {
-    cat(as.character(packageVersion("grattan")), "\t", as.character(packageDate("grattan")))
-  } else {
-    cat(as.character(packageVersion("grattan")))
+  report_version <- function() {
+    if (getRversion() >= "3.5.0") {
+      cat(as.character(packageVersion("grattan")), "\t", as.character(packageDate("grattan")))
+    } else {
+      cat(as.character(packageVersion("grattan")))
+    }
+    cat("\n")
   }
-  cat("\n")
+  report_version()
 
   cat("sample_file_1314:\n")
   print(bench::system_time(sample_file_1314[, income_tax(Taxable_Income, "2013-14", .dots.ATO = .SD)]))
@@ -43,7 +46,7 @@ if (requireNamespace("grattan", quietly = TRUE) &&
   dir.create(tmp)
   cat("\nReinstall: ...")
   devtools::install_github('hughparsonage/grattan', force = TRUE, quiet = TRUE, args = paste0('--library="', normalizePath(tmp, winslash = "/"), '"'))
-  cat(packageVersion("grattan"), "\n")
+  report_version()
   library("grattan", lib.loc = tmp)
   cat("cpi\nfrom_fys 10M:\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
