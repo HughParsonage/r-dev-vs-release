@@ -8,11 +8,11 @@ if (requireNamespace("grattan", quietly = TRUE) &&
   library(taxstats)
   library(data.table)
   library(utils)
-  report_version <- function() {
+  report_version <- function(lib.loc = NULL) {
     if (getRversion() >= "3.5.0") {
-      cat(as.character(packageVersion("grattan")), "\t", as.character(packageDate("grattan")))
+      cat(as.character(packageVersion("grattan", lib.loc = lib.loc)), "\t", as.character(packageDate("grattan", lib.loc = lib.loc)))
     } else {
-      cat(as.character(packageVersion("grattan")))
+      cat(as.character(packageVersion("grattan", lib.loc = lib.loc)))
     }
     cat("\n")
   }

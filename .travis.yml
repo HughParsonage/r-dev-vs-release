@@ -41,6 +41,7 @@ install:
 script:
 #- Rscript -e 'library(taxstats);library(data.table);library(grattan);library(hutils);print(system.time(get_sample_files_all()[, tax := income_tax(Taxable_Income, fy.year = .BY[[1L]], .dots.ATO = .SD), keyby = "fy.year"][, avg_tax_rate := coalesce(tax / Taxable_Income, 0)]))'
 - Rscript -e 'set.seed(10);x <- sample(1e8L);bench::system_time(order(x))'
+- Rscript -e 'Sys.sleep(rbeta(1, 1, 2) * 60)'
 - Rscript grattan-benchmarks.R
 # - Rscript setlength-altrep.R
 #- Rscript -e 'download.file("https://raw.githubusercontent.com/HughParsonage/Census2016.DataPack.SA1/master/tsv/SA1__Age.min.tsv", destfile = "SA1-age.tsv")'
