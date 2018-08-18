@@ -46,7 +46,7 @@ if (requireNamespace("grattan", quietly = TRUE) &&
   dir.create(tmp)
   cat("\nReinstall: ...")
   devtools::install_github('hughparsonage/grattan', force = TRUE, quiet = TRUE, args = paste0('--library="', normalizePath(tmp, winslash = "/"), '"'))
-  report_version()
+  report_version(tmp)
   library("grattan", lib.loc = tmp)
   cat("cpi\nfrom_fys 10M:\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
