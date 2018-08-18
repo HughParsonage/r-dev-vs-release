@@ -1,5 +1,5 @@
 remove.packages("grattan")
-install.packages("grattan", repos = "https://cran.rstudio.com")
+install.packages("grattan", repos = "https://cran.rstudio.com", quiet = TRUE)
 if (requireNamespace("grattan", quietly = TRUE) &&
 	  requireNamespace("bench", quietly = TRUE) &&
 	  requireNamespace("data.table", quietly = TRUE) &&
@@ -7,6 +7,13 @@ if (requireNamespace("grattan", quietly = TRUE) &&
   library(grattan)
   library(taxstats)
   library(data.table)
+  library(utils)
+  if (getRversion() >= "3.5.0") {
+    cat(as.character(packageVersion("grattan")), "\t", as.character(packageDate("grattan")))
+  } else {
+    cat(as.character(packageVersion("grattan")))
+  }
+  cat("\n")
 
   cat("sample_file_1314:\n")
   print(bench::system_time(sample_file_1314[, income_tax(Taxable_Income, "2013-14", .dots.ATO = .SD)]))
