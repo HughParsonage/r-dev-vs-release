@@ -35,14 +35,14 @@ install:
 - Rscript -e 'if (!requireNamespace("taxstats", quietly = TRUE)) install.packages("taxstats", repos = "https://hughparsonage.github.io/drat", type = "source")'
 - Rscript -e 'if (!requireNamespace("bench", quietly = TRUE)) install.packages("bench")'
 # - Rscript -e 'update.packages(ask=F)'
-- Rscript -e 'installed.packages(.Library)'
+# - Rscript -e 'installed.packages(.Library)'
 
 
 script:
 #- Rscript -e 'library(taxstats);library(data.table);library(grattan);library(hutils);print(system.time(get_sample_files_all()[, tax := income_tax(Taxable_Income, fy.year = .BY[[1L]], .dots.ATO = .SD), keyby = "fy.year"][, avg_tax_rate := coalesce(tax / Taxable_Income, 0)]))'
 - Rscript -e 'set.seed(10);x <- sample(1e8L);bench::system_time(order(x))'
 - Rscript grattan-benchmarks.R
-- Rscript setlength-altrep.R
+# - Rscript setlength-altrep.R
 #- Rscript -e 'download.file("https://raw.githubusercontent.com/HughParsonage/Census2016.DataPack.SA1/master/tsv/SA1__Age.min.tsv", destfile = "SA1-age.tsv")'
 #- Rscript -e 'system.time({for (i in 1:1e9) break})'
 #- Rscript -e 'microbenchmark::microbenchmark(read.delim("SA1-age.tsv"), data.table::fread("SA1-age.tsv"), readr::read_tsv("SA1-age.tsv"), times = 2)'
