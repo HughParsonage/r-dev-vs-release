@@ -1,9 +1,10 @@
-
+remove.packages("grattan")
+install.packages("grattan", repos = "https://cran.rstudio.com")
 if (requireNamespace("grattan", quietly = TRUE) &&
 	  requireNamespace("bench", quietly = TRUE) &&
 	  requireNamespace("data.table", quietly = TRUE) &&
     requireNamespace("taxstats", quietly = TRUE)) {
-library(grattan)
+  library(grattan)
   library(taxstats)
   library(data.table)
 
@@ -33,7 +34,9 @@ library(grattan)
   detach("package:grattan", unload = TRUE)
   tmp <- tempfile()
   dir.create(tmp)
+  cat("\nReinstall: ...")
   devtools::install_github('hughparsonage/grattan', force = TRUE, quiet = TRUE, args = paste0('--library="', normalizePath(tmp, winslash = "/"), '"'))
+  cat(packageVersion("grattan"), "\n")
   library("grattan", lib.loc = tmp)
   cat("cpi\nfrom_fys 10M:\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys100M,
@@ -57,9 +60,6 @@ library(grattan)
 
 
   rm(from_fys100M)
-
-
-  print(bench::mark(min(1:1e8)))
 
 
 } else {
