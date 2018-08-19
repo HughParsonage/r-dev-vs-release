@@ -1,9 +1,10 @@
-remove.packages("grattan")
-install.packages("grattan", repos = "https://cran.rstudio.com", quiet = TRUE)
+tempf <- tempfile()
+dir.create(tempf)
+install.packages("grattan", repos = "https://cran.rstudio.com", quiet = TRUE, lib = tempf)
 if (requireNamespace("grattan", quietly = TRUE) &&
 	  requireNamespace("bench", quietly = TRUE) &&
 	  requireNamespace("data.table", quietly = TRUE)) {
-  library(grattan)
+  library(grattan, lib.loc = tempf)
   library(data.table)
   library(utils)
   report_version <- function(lib.loc = NULL) {
@@ -18,9 +19,9 @@ if (requireNamespace("grattan", quietly = TRUE) &&
   gc()
 
   set.seed(19842014)
-  from_fys1G <- sample(yr2fy(1984:2016), size = 1e6, replace = TRUE)
+  from_fys1G <- sample(yr2fy(1984:2016), size = 1000, replace = TRUE)
   cat(".")
-  from_fys1G <- rep(from_fys1G, times = 500)
+  from_fys1G <- rep(from_fys1G, times = 100e3)
   cat("cpi (1bn)\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys1G,
                                                 to_fy = "2015-16",
