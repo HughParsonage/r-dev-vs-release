@@ -22,7 +22,7 @@ if (requireNamespace("grattan", quietly = TRUE) &&
   set.seed(19842014)
   from_fys1G <- sample(yr2fy(1984:2016), size = 1000, replace = TRUE)
   cat(".")
-  from_fys1G <- rep(from_fys1G, times = 400e3)
+  from_fys1G <- rep(from_fys1G, times = 100e3)
   cat("cpi ", prettyNum(length(from_fys1G), big.mark = ","), "\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys1G,
                                                 to_fy = "2015-16",
