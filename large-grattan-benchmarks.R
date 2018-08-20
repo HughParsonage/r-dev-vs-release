@@ -2,7 +2,8 @@ tempf <- tempfile()
 dir.create(tempf)
 install.packages("grattan", repos = "https://cran.rstudio.com", quiet = TRUE, lib = tempf)
 if (requireNamespace("grattan", quietly = TRUE) &&
-	  requireNamespace("bench", quietly = TRUE) &&
+    requireNamespace("bench", quietly = TRUE) &&
+	  requireNamespace("devtools", quietly = TRUE) &&
 	  requireNamespace("data.table", quietly = TRUE)) {
   library(grattan, lib.loc = tempf)
   library(data.table)
@@ -21,8 +22,8 @@ if (requireNamespace("grattan", quietly = TRUE) &&
   set.seed(19842014)
   from_fys1G <- sample(yr2fy(1984:2016), size = 1000, replace = TRUE)
   cat(".")
-  from_fys1G <- rep(from_fys1G, times = 100e3)
-  cat("cpi (1bn)\n")
+  from_fys1G <- rep(from_fys1G, times = 400e3)
+  cat("cpi ", prettyNum(length(from_fys1G), big.mark = ","), "\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys1G,
                                                 to_fy = "2015-16",
                                                 adjustment = "none")))
@@ -32,11 +33,10 @@ if (requireNamespace("grattan", quietly = TRUE) &&
   devtools::install_github('hughparsonage/grattan', force = TRUE, quiet = TRUE, args = paste0('--library="', normalizePath(tmp, winslash = "/"), '"'))
   report_version(tmp)
   library("grattan", lib.loc = tmp)
-  cat("cpi\nfrom_fys (1bn):\n")
+  cat("cpi ", prettyNum(length(from_fys1G), big.mark = ","), "\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys1G,
                                                 to_fy = "2015-16",
                                                 adjustment = "none")))
-  rm(from_fys1G)
 
 
 } else {
