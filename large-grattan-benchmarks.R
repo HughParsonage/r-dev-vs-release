@@ -40,6 +40,9 @@ if (requireNamespace("grattan", quietly = TRUE) &&
 
 
 } else {
+  for (i in rownames(installed.packages())) {
+    cat(i, "\n")
+  }
 	cat("\nUnable to record benchmark.\n")
 }
 
