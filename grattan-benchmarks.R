@@ -1,4 +1,4 @@
-remove.packages("grattan")
+
 install.packages("grattan", repos = "https://cran.rstudio.com", quiet = TRUE)
 if (requireNamespace("grattan", quietly = TRUE) &&
 	  requireNamespace("bench", quietly = TRUE) &&
