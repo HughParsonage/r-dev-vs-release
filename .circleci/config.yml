@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/main
     docker:
-      - image: rocker/r-ver
+      - image: rocker/tidyverse
         environment:
           NOT_CRAN: true
           
@@ -19,7 +19,6 @@ jobs:
           no_output_timeout: 20m
           command: |
             Rscript -e 'dir.create("~/.R");file.create(mv <- "~/.R/Makevars");writeLines("CXXFLAGS=-O3", mv)'
-            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript -e 'hutils::RQ("grattan", install.packages("grattan", repos="https://cran.rstudio.com"))'; fi
             if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript grattan-benchmarks.R ; fi
       - save_cache:
           key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}-{{ checksum ".circleci/config.yml" }}
