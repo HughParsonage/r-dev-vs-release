@@ -21,7 +21,7 @@ jobs:
             Rscript -e 'dir.create("~/.R");file.create(mv <- "~/.R/Makevars");writeLines("CXXFLAGS=-O3", mv)'
             if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript grattan-benchmarks.R ; fi
       - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}-{{ checksum ".circleci/config.yml" }}
+          key: deps1-{{ .Branch }}-{{ checksum "grattan-benchmarks.R" }}-{{ checksum ".circleci/config.yml" }}
           paths:
             - "/usr/local/lib/R/site-library"
       - run:
