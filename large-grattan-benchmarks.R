@@ -29,6 +29,7 @@ if (requireNamespace("grattan", quietly = TRUE, lib.loc = tempf) &&
                                                 adjustment = "none")))
   tmp <- tempfile()
   dir.create(tmp)
+  detach("package:grattan", unload = TRUE)
   cat("\n", crayon::bgGreen("Reinstall: ..."), "\n")
   devtools::install_github('hughparsonage/grattan', force = TRUE, quiet = TRUE, args = paste0('--library="', normalizePath(tmp, winslash = "/"), '"'))
   report_version(tmp)
