@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/main
+    docker:
+      - image: rocker/r-ver
+        environment:
+          NOT_CRAN: true
+          
+    parallelism: 2
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps1-{{ .Branch }}-{{ checksum "grattan-benchmarks.R" }}-{{ checksum ".circleci/config.yml" }}
+            - deps1-{{ .Branch }}
+            - deps1-
+      - run:
+          no_output_timeout: 20m
+          command: |
+            Rscript -e 'dir.create("~/.R");file.create(mv <- "~/.R/Makevars");writeLines("CXXFLAGS=-O3", mv)'
+            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript -e 'hutils::RQ("grattan", install.packages("grattan", repos="https://cran.rstudio.com"))'; fi
+            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript grattan-benchmarks.R ; fi
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}-{{ checksum ".circleci/config.yml" }}
+          paths:
+            - "/usr/local/lib/R/site-library"
+      - run:
+          no_output_timeout: 20m
+          command: |
+            mkdir /root/main/artifacts
+            if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'install.packages("hutils", repos="https://cran.rstudio.com")'; fi
+            if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'hutils::RQ("taxstats", install.packages("taxstats", repos="https://hughparsonage.github.io/tax-drat"))'; fi
+            if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'hutils::RQ("devtools", install.packages("devtools", repos="https://cran.rstudio.com"))' ; fi
+            if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'hutils::RQ("bench", install.packages("bench", repos="https://cran.rstudio.com"))' ; fi
+            if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript large-grattan-benchmarks.R ; fi
+      - store_artifacts:
+          path: /root/main/artifacts/
+          destination: artifacts
