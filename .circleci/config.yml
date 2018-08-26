@@ -25,10 +25,6 @@ jobs:
             if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript -e 'hutils::RQ("taxstats", install.packages("taxstats", repos="https://hughparsonage.github.io/tax-drat"))'; fi
             if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript -e 'hutils::RQ("grattan", install.packages("grattan", repos="https://hughparsonage.github.io/tax-drat"))'; fi
             if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript grattan-benchmarks.R ; fi
-      - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "grattan-benchmarks.R" }}-{{ checksum ".circleci/config.yml" }}
-          paths:
-            - "/usr/local/lib/R/site-library"
       - run:
           no_output_timeout: 20m
           command: |
@@ -39,6 +35,10 @@ jobs:
             if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'hutils::RQ("RcppArmadillo", install.packages("RcppArmadillo", repos="https://cran.rstudio.com"))' ; fi            
             if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'hutils::RQ("bench", install.packages("bench", repos="https://cran.rstudio.com"))' ; fi
             if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript large-grattan-benchmarks.R ; fi
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "grattan-benchmarks.R" }}-{{ checksum ".circleci/config.yml" }}
+          paths:
+            - "/usr/local/lib/R/site-library"
       - store_artifacts:
           path: /root/main/artifacts/
           destination: artifacts
