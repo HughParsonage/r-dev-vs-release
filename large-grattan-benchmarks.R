@@ -29,10 +29,12 @@ if (requireNamespace("grattan", quietly = TRUE, lib.loc = tempf) &&
                                                 adjustment = "none")))
   tmp <- tempfile()
   dir.create(tmp)
-  cat("\n", crayon::bgGreen("Reinstall: ..."))
+  cat("\n", crayon::bgGreen("Reinstall: ..."), "\n")
   devtools::install_github('hughparsonage/grattan', force = TRUE, quiet = TRUE, args = paste0('--library="', normalizePath(tmp, winslash = "/"), '"'))
   report_version(tmp)
   library("grattan", lib.loc = tmp)
+  print(devtools::session_info())
+
   cat("cpi ", prettyNum(length(from_fys1G), big.mark = ","), "\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys1G,
                                                 to_fy = "2015-16",
