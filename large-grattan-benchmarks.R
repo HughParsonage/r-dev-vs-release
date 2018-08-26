@@ -1,7 +1,7 @@
 tempf <- tempfile()
 dir.create(tempf)
 install.packages("grattan", repos = "https://cran.rstudio.com", quiet = TRUE, lib = tempf)
-if (requireNamespace("grattan", quietly = TRUE) &&
+if (requireNamespace("grattan", quietly = TRUE, lib.loc = tempf) &&
     requireNamespace("bench", quietly = TRUE) &&
 	  requireNamespace("devtools", quietly = TRUE) &&
 	  requireNamespace("data.table", quietly = TRUE)) {
