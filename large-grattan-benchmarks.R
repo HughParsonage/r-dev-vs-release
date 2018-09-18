@@ -26,7 +26,7 @@ if (requireNamespace("grattan", quietly = TRUE, lib.loc = tempf) &&
   set.seed(19842014)
   from_fys1G <- sample(yr2fy(1984:2016), size = 100, replace = TRUE)
   cat(".")
-  from_fys1G <- rep(from_fys1G, times = if (tolower(Sys.info()['sysname']) == "darwin") 50e3 else 10e3)
+  from_fys1G <- rep(from_fys1G, times = if (tolower(Sys.info()['sysname']) == "darwin") 50e3 else 8e3)
   cat("cpi ", prettyNum(length(from_fys1G), big.mark = ","), "\n")
   print(bench::system_time(cpi_inflator(from_fy = from_fys1G,
                                                 to_fy = "2015-16",
