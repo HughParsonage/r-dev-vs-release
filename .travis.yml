@@ -44,6 +44,7 @@ script:
 - Rscript -e 'set.seed(10);x <- sample(1e8L);bench::system_time(order(x))'
 - Rscript -e 'Sys.sleep(rbeta(1, 1, 2) * 30)'
 - Rscript grattan-benchmarks.R
+- Rscript datatable2397.R
 # - travis_wait Rscript large-grattan-benchmarks.R
 # - Rscript setlength-altrep.R
 #- Rscript -e 'download.file("https://raw.githubusercontent.com/HughParsonage/Census2016.DataPack.SA1/master/tsv/SA1__Age.min.tsv", destfile = "SA1-age.tsv")'
