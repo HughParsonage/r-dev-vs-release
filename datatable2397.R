@@ -1,6 +1,8 @@
 # datatable2397.R
 if (unname(Sys.info()["sysname"] == "Linux")) {
-	detach("package:data.table", unload = TRUE)
+	if ("package:data.table" %in% search()) {
+		detach("package:data.table", unload = TRUE)
+	}
 remove.packages("data.table")
 install.packages("data.table")
 library(data.table)
