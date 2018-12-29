@@ -1,4 +1,5 @@
 # datatable2397.R
+if (unname(Sys.info()["sysname"] == "Linux")) {
 remove.packages("data.table")
 fread("https://github.com/HughParsonage/US-flights-data-2017/raw/master/data-raw/ReleaseableAircraft2017/ACFTREF.txt")
 install.packages("data.table")
@@ -10,6 +11,6 @@ library(data.table)
 
 
 fread("https://github.com/HughParsonage/US-flights-data-2017/raw/master/data-raw/ReleaseableAircraft2017/ACFTREF.txt")
-
+}
 
 
