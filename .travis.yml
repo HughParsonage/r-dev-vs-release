@@ -21,6 +21,7 @@ repos:
   CRAN: https://cran.rstudio.com
 
 install:
+  - echo Installation step
 # - Rscript -e 'if (!requireNamespace("stringi", quietly = TRUE)) install.packages(c("stringi"), type = "source", quiet=T)'
 # - Rscript -e 'if (!requireNamespace("glue", quietly = TRUE)) install.packages(c("glue"), quiet=T)'
 # - Rscript -e 'if (!requireNamespace("magrittr", quietly = TRUE)) install.packages(c("magrittr"), quiet=T)'
