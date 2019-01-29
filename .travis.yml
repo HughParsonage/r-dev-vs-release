@@ -21,30 +21,31 @@ repos:
   CRAN: https://cran.rstudio.com
 
 install:
-- Rscript -e 'if (!requireNamespace("stringi", quietly = TRUE)) install.packages(c("stringi"), type = "source", quiet=T)'
-- Rscript -e 'if (!requireNamespace("glue", quietly = TRUE)) install.packages(c("glue"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("magrittr", quietly = TRUE)) install.packages(c("magrittr"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("stringr", quietly = TRUE)) install.packages(c("stringr"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("evaluate", quietly = TRUE)) install.packages(c("evaluate"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("knitr", quietly = TRUE)) install.packages(c("knitr"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("data.table", quietly = TRUE)) install.packages(c("microbenchmark", "data.table"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("dplyr", quietly = TRUE)) install.packages(c("dplyr"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages(c("devtools"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("readr", quietly = TRUE)) install.packages(c("readr"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("hutils", quietly = TRUE)) install.packages(c("hutils"), quiet=T)'
-- Rscript -e 'if (!requireNamespace("grattan", quietly = TRUE)) install.packages("grattan", quiet = TRUE)'
-- Rscript -e 'if (!requireNamespace("taxstats", quietly = TRUE)) install.packages("taxstats", repos = "https://hughparsonage.github.io/drat", type = "source")'
-- Rscript -e 'if (!requireNamespace("bench", quietly = TRUE)) install.packages("bench")'
+# - Rscript -e 'if (!requireNamespace("stringi", quietly = TRUE)) install.packages(c("stringi"), type = "source", quiet=T)'
+# - Rscript -e 'if (!requireNamespace("glue", quietly = TRUE)) install.packages(c("glue"), quiet=T)'
+# - Rscript -e 'if (!requireNamespace("magrittr", quietly = TRUE)) install.packages(c("magrittr"), quiet=T)'
+# - Rscript -e 'if (!requireNamespace("stringr", quietly = TRUE)) install.packages(c("stringr"), quiet=T)'
+# - Rscript -e 'if (!requireNamespace("evaluate", quietly = TRUE)) install.packages(c("evaluate"), quiet=T)'
+# - Rscript -e 'if (!requireNamespace("knitr", quietly = TRUE)) install.packages(c("knitr"), quiet=T)'
+# - Rscript -e 'if (!requireNamespace("data.table", quietly = TRUE)) install.packages(c("microbenchmark", "data.table"), quiet=T)'
+# - Rscript -e 'if (!requireNamespace("dplyr", quietly = TRUE)) install.packages(c("dplyr"), quiet=T)'
+# - Rscript -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages(c("devtools"), quiet=T)'
+# - Rscript -e 'if (!requireNamespace("readr", quietly = TRUE)) install.packages(c("readr"), quiet=T)'
+# - Rscript -e 'if (!requireNamespace("hutils", quietly = TRUE)) install.packages(c("hutils"), quiet=T)'
+# - Rscript -e 'if (!requireNamespace("grattan", quietly = TRUE)) install.packages("grattan", quiet = TRUE)'
+# - Rscript -e 'if (!requireNamespace("taxstats", quietly = TRUE)) install.packages("taxstats", repos = "https://hughparsonage.github.io/drat", type = "source")'
+# - Rscript -e 'if (!requireNamespace("bench", quietly = TRUE)) install.packages("bench")'
 # - Rscript -e 'update.packages(ask=F)'
 # - Rscript -e 'installed.packages(.Library)'
 
 
 script:
 #- Rscript -e 'library(taxstats);library(data.table);library(grattan);library(hutils);print(system.time(get_sample_files_all()[, tax := income_tax(Taxable_Income, fy.year = .BY[[1L]], .dots.ATO = .SD), keyby = "fy.year"][, avg_tax_rate := coalesce(tax / Taxable_Income, 0)]))'
-- Rscript -e 'set.seed(10);x <- sample(1e8L);bench::system_time(order(x))'
-- Rscript -e 'Sys.sleep(rbeta(1, 1, 2) * 30)'
-- Rscript grattan-benchmarks.R
-- Rscript datatable2397.R
+# - Rscript -e 'set.seed(10);x <- sample(1e8L);bench::system_time(order(x))'
+# - Rscript -e 'Sys.sleep(rbeta(1, 1, 2) * 30)'
+# - Rscript grattan-benchmarks.R
+# - Rscript datatable2397.R
+- Rscript datatable2154.R
 # - travis_wait Rscript large-grattan-benchmarks.R
 # - Rscript setlength-altrep.R
 #- Rscript -e 'download.file("https://raw.githubusercontent.com/HughParsonage/Census2016.DataPack.SA1/master/tsv/SA1__Age.min.tsv", destfile = "SA1-age.tsv")'
