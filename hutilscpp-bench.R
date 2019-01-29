@@ -1,4 +1,4 @@
-install.packages(c("data.table", "bench", "hutils", "Rcpp"), repos = "https://cran.rstudio.com", quiet = TRUE)
+install.packages(c("data.table", "bench", "hutils", "Rcpp", "devtools"), repos = "https://cran.rstudio.com", quiet = TRUE)
 devtools::install_github("hughparsonage/hutilscpp", quick = TRUE)
 
 library(hutilscpp)
@@ -9,7 +9,10 @@ N <- 1e8  ## too slow for CRAN
 # Two examples, from slowest to fastest,
 # run with N = 1e8 elements
 
+bench_system_time <- function(...) {res <- hutilscpp::bench_system_time(...); cat(as.character(as.integer(1000 * as.numeric(res[2]))), "ms")}
+
                                        # seconds
+cat("x <- rep_len(runif(1e4, 0, 6), N)\n")
 x <- rep_len(runif(1e4, 0, 6), N)
 bench_system_time(x > 5)
 cat("which\n")
@@ -23,6 +26,7 @@ bench_system_time(which_first(x > 5))  # 0.000
 
 rm(x)
 x <- rep_len(sample(1:100), N)
+cat("\n\nx <- rep_len(sample(1:100), N)\n")
 bench_system_time(x > 5)
 cat("which\n")
 bench_system_time(which(x > 5))        # 0.8
@@ -36,6 +40,7 @@ rm(x)
 
 
 ## Worst case: have to check all N elements
+cat("\n\ndouble(N)\n")
 x <- double(N)
 cat("which\n")
 bench_system_time(which(x > 0))        # 1.0
