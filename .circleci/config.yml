@@ -19,7 +19,7 @@ jobs:
           no_output_timeout: 20m
           command: |
             Rscript -e 'dir.create("~/.R");file.create(mv <- "~/.R/Makevars");writeLines("CXXFLAGS=-O3", mv)'
-            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript datatable2154.R ; fi
+            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript hutilscpp-bench.R ; fi
       - run:
           no_output_timeout: 20m
           command: |
