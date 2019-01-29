@@ -1,8 +1,4 @@
-if (requireNamespace("data.table", quietly = TRUE)) {
-	remove.packages("data.table")
-}
 
-install.packages("data.table", repos="https://Rdatatable.gitlab.io/data.table")
 
 library(data.table)
 print(sessionInfo())
