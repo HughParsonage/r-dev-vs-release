@@ -16,6 +16,9 @@ matrix:
 latex: false
 pandoc: false
 cache: packages
+env:
+  - R_GRATTAN_BUILD_MAIN_VIGNETTE=true
+  - R_GRATTAN_ALLOW_TAXSTATS=true
 
 repos:
   CRAN: https://cran.rstudio.com
