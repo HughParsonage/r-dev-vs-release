@@ -6,7 +6,7 @@ install.packages("grattan", repos = "https://cran.rstudio.com")
 
 install.packages("taxstats", repos = "https://hughparsonage.github.io/tax-drat/", type = "source")
 grattan::install_taxstats()
-remotes::install_github("hughparsonage/grattan", dependencies = TRUE)
+remotes::install_github("hughparsonage/grattan", dependencies = NA, upgrade = "never")
 
 
 
