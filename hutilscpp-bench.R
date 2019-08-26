@@ -9,7 +9,7 @@ N <- 1e8  ## too slow for CRAN
 # Two examples, from slowest to fastest,
 # run with N = 1e8 elements
 
-bench_system_time <- function(...) {res <- hutilscpp::bench_system_time(...); cat(as.character(as.integer(1000 * as.numeric(res[2]))), "ms")}
+bench_system_time <- function(...) {res <- hutilscpp::bench_system_time(...); cat(as.character(as.integer(1000 * as.numeric(res[2]))), "ms\n\n")}
 
                                        # seconds
 cat("x <- rep_len(runif(1e4, 0, 6), N)\n")
