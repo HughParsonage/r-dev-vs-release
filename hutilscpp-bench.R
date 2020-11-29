@@ -1,8 +1,8 @@
 install.packages(c("data.table", "bench", "hutils", "Rcpp", "devtools"), repos = "https://cran.rstudio.com", quiet = TRUE)
 library(hutils)
 provide.file("~/.R/Makevars")
-cat("PKG_CXXFLAGS += -O3", file = "~/.R/Makevars", append = TRUE)
-cat("PKG_LIBS += -O3", file = "~/.R/Makevars", append = TRUE)
+cat("PKG_CXXFLAGS += -O3\n", file = "~/.R/Makevars", append = TRUE)
+cat("PKG_LIBS += -O3\n", file = "~/.R/Makevars", append = TRUE)
 
 
 devtools::install_github("hughparsonage/hutilscpp")
