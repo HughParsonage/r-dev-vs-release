@@ -1,5 +1,11 @@
 install.packages(c("data.table", "bench", "hutils", "Rcpp", "devtools"), repos = "https://cran.rstudio.com", quiet = TRUE)
-devtools::install_github("hughparsonage/hutilscpp", quick = TRUE)
+library(hutils)
+provide.file("~/.R/Makevars")
+cat("PKG_CXXFLAGS += -O3", file = "~/.R/Makevars", append = TRUE)
+cat("PKG_LIBS += -O3", file = "~/.R/Makevars", append = TRUE)
+
+
+devtools::install_github("hughparsonage/hutilscpp")
 
 library(hutilscpp)
 
@@ -54,8 +60,8 @@ x <- integer(N)
 
 library(Rcpp)
 sourceCpp("rollers.cpp", showOutput = TRUE)
-bench_system_time(which_first_equal_A(x))
-bench_system_time(which_first_equal_B(x))
+bench_system_time(which_first_equal_A(x, 1L))
+bench_system_time(which_first_equal_B(x, 1L))
 
 
 
