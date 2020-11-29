@@ -75,7 +75,7 @@ bench_system_time(which_first_equal_B(x, 1L))
 
 print(bench::mark(which_first_equal_A(x, 1L),
                   which_first_equal_B(x, 1L),
-                  iterations = 10)
+                  iterations = 10))
 
 
 
