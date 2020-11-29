@@ -49,5 +49,16 @@ bench_system_time(which.max(x > 0))    # 0.4  but returns 1, not 0
 cat("which_first\n")
 bench_system_time(which_first(x > 0))  # 0.1
 
+x <- NULL
+x <- integer(N)
+
+library(Rcpp)
+sourceCpp("rollers.cpp", showOutput = TRUE)
+bench_system_time(which_first_equal_A(x))
+bench_system_time(which_first_equal_B(x))
+
+
+
+
 
 

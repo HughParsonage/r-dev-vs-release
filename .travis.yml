@@ -47,7 +47,7 @@ script:
 # - Rscript grattan-benchmarks.R
 # - Rscript datatable2397.R
 # - Rscript datatable2154.R
-- Rscript grattan195.R 
+# - Rscript grattan195.R
 - Rscript hutilscpp-bench.R
 # - travis_wait Rscript large-grattan-benchmarks.R
 # - Rscript setlength-altrep.R
