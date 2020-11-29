@@ -19,17 +19,13 @@ jobs:
           no_output_timeout: 20m
           command: |
             Rscript -e 'dir.create("~/.R");file.create(mv <- "~/.R/Makevars");writeLines("CXXFLAGS=-O3", mv)'
-            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript -e 'install.packages("hutils", repos="https://cran.rstudio.com", dep = TRUE)' ; fi
-            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript -e 'hutils::RQ("bench", install.packages("bench", repos="https://cran.rstudio.com"))' ; fi
-            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript -e 'hutils::RQ("RcppArmadillo", install.packages("RcppArmadillo", repos="https://cran.rstudio.com"))' ; fi
-            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript -e 'hutils::RQ("taxstats", install.packages("taxstats", repos="https://hughparsonage.github.io/tax-drat"))'; fi
-            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript -e 'hutils::RQ("grattan", install.packages("grattan", repos="https://hughparsonage.github.io/tax-drat"))'; fi
-            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript grattan-benchmarks.R ; fi
+            if [[ $CIRCLE_NODE_INDEX == "0" ]]; then Rscript hutilscpp-bench.R ; fi
       - run:
           no_output_timeout: 20m
           command: |
             mkdir /root/main/artifacts
-            if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'install.packages("hutils", repos="https://cran.rstudio.com", dep = TRUE)'; fi
+            if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'install.packages("hutils", repos="https://cran.rstudio.com")'; fi
+            if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'install.packages("grattan", repos="https://cran.rstudio.com")'; fi
             if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'hutils::RQ("taxstats", install.packages("taxstats", repos="https://hughparsonage.github.io/tax-drat"))'; fi
             if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'hutils::RQ("devtools", install.packages("devtools", repos="https://cran.rstudio.com"))' ; fi            
             if [[ $CIRCLE_NODE_INDEX == "1" ]]; then Rscript -e 'hutils::RQ("RcppArmadillo", install.packages("RcppArmadillo", repos="https://cran.rstudio.com"))' ; fi            
