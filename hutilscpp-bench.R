@@ -69,7 +69,7 @@ print(bench::mark(which_first_equal_A(x, 1L),
 
 cat("CXX = clang++\n", file = "~/.R/Makevars", append = TRUE)
 
-sourceCpp("rollers.cpp", showOutput = TRUE)
+sourceCpp("rollers.cpp", showOutput = TRUE, rebuild = TRUE)
 bench_system_time(which_first_equal_A(x, 1L))
 bench_system_time(which_first_equal_B(x, 1L))
 
