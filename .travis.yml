@@ -5,6 +5,9 @@ os:
 r:
 - release
 - devel
+compiler:
+- clang
+- gcc
 
 # Macs don't work on devel
 matrix:
